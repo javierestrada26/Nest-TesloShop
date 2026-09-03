@@ -12,8 +12,10 @@ export class User {
     })
     email!:string;
 
-    @Column('text')
-    password!:string;
+    @Column('text',{
+        select:false
+    })
+    password?:string;
 
     @Column('text')
     fullName!:string;
