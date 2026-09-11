@@ -83,14 +83,21 @@ export class Product {
     @Column('text')
     gender!: string;
 
-    @ApiProperty()
+    @ApiProperty({
+        example: ['shirt', 'clothing'],
+        description: 'Product tags',
+        type: [String],
+    })
     @Column('text',{
         array:true,
         default:[]
     })
     tags!: string[]
 
-    @ApiProperty()
+    @ApiProperty({
+        type: () => [ProductImage],
+        description: 'Product images',
+    })
     @OneToMany(
         ()=>ProductImage,
         (productImage) => productImage.product,
