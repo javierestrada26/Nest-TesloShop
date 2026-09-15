@@ -11,6 +11,7 @@ export class MessagesWsGateway implements OnGatewayConnection, OnGatewayDisconne
 
 
   handleConnection(client: Socket) {
+    const token = client.handshake.headers.authentication as string;
     this.messagesWsService.registerClient(client);
 
     this.wss.emit('clients-updated', this.messagesWsService.getConnectedClients());
@@ -26,7 +27,24 @@ export class MessagesWsGateway implements OnGatewayConnection, OnGatewayDisconne
 
   @SubscribeMessage('message-from-client')
   onMessageFromClient(client:Socket, payload: NewMessageDto){
-    
+
+    //!Emite a un cliente
+    /*client.emit('message-from-server',{
+      fullName: 'Yo',
+      message:payload.message || 'no-message'
+    });
+
+    //!Emite a todos menos al cliente inicial
+    client.broadcast.emit('message-from-server',{
+      fullName: 'Yo',
+      message:payload.message || 'no-message'
+    });*/
+
+    //para todos
+    this.wss.emit('message-from-server',{
+      fullName: 'Yo',
+      message:payload.message || 'no-message'
+    });
   }
 
 }
