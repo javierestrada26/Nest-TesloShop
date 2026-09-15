@@ -151,13 +151,24 @@ npm run start:prod
 
 ---
 
+## 🌐 Despliegue y Entornos de Producción
+
+El proyecto se encuentra desplegado y disponible para pruebas en producción:
+
+- 🚀 **Backend REST API / WebSockets (Render)**: [https://nest-tesloshop-ey13.onrender.com](https://nest-tesloshop-ey13.onrender.com)
+- 📚 **Documentación Swagger en Producción**: [https://nest-tesloshop-ey13.onrender.com/api](https://nest-tesloshop-ey13.onrender.com/api)
+- 🖥️ **Cliente Frontend de WebSockets (Netlify)**: [https://legendary-meerkat-bae0c8.netlify.app](https://legendary-meerkat-bae0c8.netlify.app/)
+
+---
+
 ## 📚 Documentación Interactiva (Swagger)
 
-Una vez iniciada la aplicación, accede a la documentación interactiva Swagger en:
+Puedes acceder y probar los endpoints interactivos en cualquiera de los siguientes entornos:
 
-👉 **`http://localhost:3000/api`**
+- **Desarrollo Local**: `http://localhost:3000/api`
+- **Producción (Render)**: 👉 [https://nest-tesloshop-ey13.onrender.com/api](https://nest-tesloshop-ey13.onrender.com/api)
 
-Desde allí podrás explorar todos los endpoints REST, esquemas de DTOs, entidades y probar solicitudes directamente autenticándote con el botón **Authorize** (usando el token JWT obtenido en el login).
+Desde la interfaz de Swagger podrás explorar los esquemas de DTOs, entidades y ejecutar peticiones directamente utilizando el botón **Authorize** (con el token JWT obtenido al iniciar sesión).
 
 ---
 
@@ -165,10 +176,11 @@ Desde allí podrás explorar todos los endpoints REST, esquemas de DTOs, entidad
 
 El SEED restablece la base de datos limpiando registros y creando los usuarios e imágenes de prueba iniciales:
 
-* **Endpoint**: `GET http://localhost:3000/api/seed`
-* **cURL**:
+* **Endpoint Local**: `GET http://localhost:3000/api/seed`
+* **Endpoint Producción**: `GET https://nest-tesloshop-ey13.onrender.com/api/seed`
+* **cURL (Producción)**:
   ```bash
-  curl http://localhost:3000/api/seed
+  curl https://nest-tesloshop-ey13.onrender.com/api/seed
   ```
 * **Usuarios de prueba generados**:
   - **Admin**: `test1@google.com` / `Abc123`
@@ -178,15 +190,22 @@ El SEED restablece la base de datos limpiando registros y creando los usuarios e
 
 ## ⚡ Conexión a WebSockets (Socket.IO)
 
-Para conectarse al servicio de chat/mensajes en tiempo real:
+Para conectarte al servicio de chat/mensajes en tiempo real:
 
-- **URL de Conexión**: `http://localhost:3000`
-- **Headers de Handshake Requeridos**:
-  ```json
-  {
-    "authentication": "<TU_JWT_TOKEN>"
-  }
-  ```
+### 🖥️ Cliente Demo (Frontend en Netlify)
+Puedes probar la funcionalidad del WebSocket en tiempo real utilizando la aplicación cliente desplegada en Netlify:
+👉 **[https://legendary-meerkat-bae0c8.netlify.app](https://legendary-meerkat-bae0c8.netlify.app/)**
+
+### 🔌 Servidor WebSocket (Backend):
+- **Desarrollo Local**: `http://localhost:3000`
+- **Producción (Render)**: `https://nest-tesloshop-ey13.onrender.com`
+
+### 🔑 Headers de Handshake Requeridos:
+```json
+{
+  "authentication": "<TU_JWT_TOKEN>"
+}
+```
 
 ### Eventos de WebSocket:
 - **`clients-updated`** *(Escuchar)*: Devuelve el listado de clientes activos conectados.
